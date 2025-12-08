@@ -63,7 +63,7 @@ Partial Class frmLogin
         ' 
         ' cmd_tempInto
         ' 
-        cmd_tempInto.Cursor = Cursors.Hand
+        cmd_tempInto.Cursor = Cursors.No
         cmd_tempInto.Enabled = False
         cmd_tempInto.FlatStyle = FlatStyle.Flat
         cmd_tempInto.Location = New Point(23, 160)

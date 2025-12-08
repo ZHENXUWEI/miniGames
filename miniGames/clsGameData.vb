@@ -276,48 +276,6 @@ Public Class clsGameData
         End Try
     End Sub
 
-    Public Function GetStatistics() As String
-        Try
-            If Not TableExists("vb_game_statistics") Then Return "统计功能未启用"
-            Dim today As String = Date.Now.ToString("yyyy-MM-dd")
-            Dim sql As String = $"SELECT login_count, play_minutes, gold_earned, gold_spent FROM vb_game_statistics WHERE user_id = {UserID} AND stat_date = '{today}'"
-            Dim dt As DataTable = m_db.ExecuteQuery(sql)
-            Dim result As String = "今日统计:" & vbCrLf
-            If dt.Rows.Count > 0 Then
-                result &= $"登录次数: {dt.Rows(0)("login_count")}次" & vbCrLf &
-                          $"游戏时长: {dt.Rows(0)("play_minutes")}分钟" & vbCrLf &
-                          $"获得金币: {dt.Rows(0)("gold_earned")}" & vbCrLf &
-                          $"消耗金币: {dt.Rows(0)("gold_spent")}" & vbCrLf
-            Else
-                result &= "暂无今日统计"
-            End If
-            Return result
-        Catch
-            Return "获取统计信息出错"
-        End Try
-    End Function
-
-    Public Function GetWeeklyStatistics() As String
-        Try
-            If Not TableExists("vb_game_statistics") Then Return "统计功能未启用"
-            Dim weekStart As String = DateAdd(DateInterval.Day, -Weekday(Date.Now) + 1, Date.Now).ToString("yyyy-MM-dd")
-            Dim sql As String = $"SELECT SUM(login_count) as total_logins, SUM(play_minutes) as total_play_time, SUM(gold_earned) as total_gold_earned, SUM(gold_spent) as total_gold_spent FROM vb_game_statistics WHERE user_id = {UserID} AND stat_date >= '{weekStart}'"
-            Dim dt As DataTable = m_db.ExecuteQuery(sql)
-            Dim result As String = "本周统计:" & vbCrLf
-            If dt.Rows.Count > 0 AndAlso Not IsDBNull(dt.Rows(0)("total_logins")) Then
-                result &= $"登录次数: {dt.Rows(0)("total_logins")}次" & vbCrLf &
-                          $"游戏时长: {dt.Rows(0)("total_play_time")}分钟" & vbCrLf &
-                          $"获得金币: {dt.Rows(0)("total_gold_earned")}" & vbCrLf &
-                          $"消耗金币: {dt.Rows(0)("total_gold_spent")}" & vbCrLf
-            Else
-                result &= "暂无本周统计"
-            End If
-            Return result
-        Catch
-            Return "获取本周统计出错"
-        End Try
-    End Function
-
     Public Function GetWarehouseCapacity() As Long
         Return 1000 * WarehouseLevel
     End Function

@@ -1,7 +1,7 @@
 ﻿Imports System.Threading
 
 Public Class frmLoginLoad
-
+    Private m_gameData As clsGameData
 
     Private Sub frmLoginLoad_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         loadBar.Value = 0
@@ -28,9 +28,25 @@ Public Class frmLoginLoad
     End Sub
 
     Private Sub stop1s_Tick(sender As Object, e As EventArgs) Handles stop1s.Tick
+        ' 停止所有定时器
+        ZeroTo25.Enabled = False
+        to67.Enabled = False
+        to100.Enabled = False
+        stop1s.Enabled = False
+
+        ' 验证游戏数据
+        If Not GameManager.IsGameDataLoaded Then
+            MessageBox.Show("游戏数据加载失败，请重新登录", "错误",
+                          MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Me.Close()
+            Return
+        End If
+
+        ' 创建并显示主窗体
+        Dim mainFrm As New frmMain()
         Me.Hide()
-        loadBar.Value = 0
-        frmMain.Show()
+        mainFrm.Show()
+        Me.Close()  ' 关闭加载窗体
     End Sub
 
     Private Sub to100_Tick(sender As Object, e As EventArgs) Handles to100.Tick
@@ -42,5 +58,9 @@ Public Class frmLoginLoad
             to100.Enabled = False
             stop1s.Enabled = True
         End If
+    End Sub
+
+    Private Sub loadBar_Click(sender As Object, e As EventArgs) Handles loadBar.Click
+
     End Sub
 End Class

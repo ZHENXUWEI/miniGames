@@ -43,9 +43,8 @@ Public Class frmLogin
                 ' 初始化游戏数据
                 m_gameData = New clsGameData()
                 If m_gameData.InitializeGameData(m_user.UserID, m_user.Username) Then
-                    ' 跳转主窗体（替换VB6的Me.Hide和frmMain.Show）
-                    'Dim mainFrm As New frmMain()
-                    'mainFrm.SetGameData(m_gameData)
+                    ' 保存到全局管理器
+                    GameManager.CurrentGameData = m_gameData
                     frmLoginLoad.Show()
                     Me.Hide()
                 Else
