@@ -59,7 +59,10 @@ Partial Class frmLoginLoad
         AutoScaleDimensions = New SizeF(7F, 17F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(324, 27)
+        ControlBox = False
         Controls.Add(loadBar)
+        MaximizeBox = False
+        MinimizeBox = False
         Name = "frmLoginLoad"
         StartPosition = FormStartPosition.CenterScreen
         Text = "加载页面..."

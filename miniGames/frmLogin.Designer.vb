@@ -63,6 +63,7 @@ Partial Class frmLogin
         ' 
         ' cmd_tempInto
         ' 
+        cmd_tempInto.Cursor = Cursors.Hand
         cmd_tempInto.Enabled = False
         cmd_tempInto.FlatStyle = FlatStyle.Flat
         cmd_tempInto.Location = New Point(23, 160)
@@ -74,6 +75,7 @@ Partial Class frmLogin
         ' 
         ' input_username
         ' 
+        input_username.Cursor = Cursors.IBeam
         input_username.Font = New Font("黑体", 15.75F)
         input_username.Location = New Point(98, 22)
         input_username.Name = "input_username"
@@ -92,6 +94,7 @@ Partial Class frmLogin
         ' 
         ' input_password
         ' 
+        input_password.Cursor = Cursors.IBeam
         input_password.Font = New Font("黑体", 15.75F)
         input_password.Location = New Point(98, 72)
         input_password.Name = "input_password"
@@ -101,6 +104,8 @@ Partial Class frmLogin
         ' lb_reg
         ' 
         lb_reg.AutoSize = True
+        lb_reg.Cursor = Cursors.Hand
+        lb_reg.FlatStyle = FlatStyle.Flat
         lb_reg.Font = New Font("黑体", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(134))
         lb_reg.ForeColor = SystemColors.ActiveCaption
         lb_reg.Location = New Point(167, 127)
@@ -111,6 +116,7 @@ Partial Class frmLogin
         ' 
         ' cmd_login
         ' 
+        cmd_login.Cursor = Cursors.Hand
         cmd_login.FlatStyle = FlatStyle.Flat
         cmd_login.Location = New Point(104, 160)
         cmd_login.Name = "cmd_login"
@@ -144,7 +150,7 @@ Partial Class frmLogin
         ' 
         lblStatus.AutoSize = True
         lblStatus.ForeColor = Color.Red
-        lblStatus.Location = New Point(42, 243)
+        lblStatus.Location = New Point(42, 242)
         lblStatus.Name = "lblStatus"
         lblStatus.Size = New Size(80, 17)
         lblStatus.TabIndex = 10
@@ -167,6 +173,7 @@ Partial Class frmLogin
         Controls.Add(cmd_tempInto)
         Controls.Add(Label1)
         Controls.Add(chkRemember)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MaximizeBox = False
         MinimizeBox = False
         Name = "frmLogin"

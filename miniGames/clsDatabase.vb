@@ -65,4 +65,60 @@ Public Class clsDatabase
         If String.IsNullOrEmpty(str) Then Return ""
         Return str.Replace("'", "''").Replace("\", "\\")
     End Function
+
+    ' 获取连接对象（用于参数化查询）
+    Public ReadOnly Property Connection As MySqlConnection
+        Get
+            If m_conn.State <> ConnectionState.Open Then
+                OpenConnection()
+            End If
+            Return m_conn
+        End Get
+    End Property
+
+    ' 参数化查询执行方法
+    Public Function ExecuteParameterizedQuery(sql As String,
+                                        ParamArray parameters As MySqlParameter()) As Boolean
+        Try
+            If Not OpenConnection() Then Return False
+
+            Using cmd As New MySqlCommand(sql, m_conn)
+                If parameters IsNot Nothing Then
+                    cmd.Parameters.AddRange(parameters)
+                End If
+
+                cmd.ExecuteNonQuery()
+                Return True
+            End Using
+        Catch ex As Exception
+            LastError = $"参数化查询失败: {ex.Message} SQL: {sql}"
+            Return False
+        End Try
+    End Function
+
+    ' 参数化查询返回DataTable（用于SELECT查询）
+    Public Function ExecuteParameterizedQueryWithResult(sql As String,
+                                                  ParamArray parameters As MySqlParameter()) As DataTable
+        Dim dt As New DataTable()
+        Try
+            If Not OpenConnection() Then Return Nothing
+
+            Using cmd As New MySqlCommand(sql, m_conn)
+                ' 添加参数
+                If parameters IsNot Nothing Then
+                    cmd.Parameters.AddRange(parameters)
+                End If
+
+                ' 执行查询
+                Using adapter As New MySqlDataAdapter(cmd)
+                    adapter.Fill(dt)
+                End Using
+            End Using
+
+            Return dt
+        Catch ex As Exception
+            LastError = $"参数化查询失败: {ex.Message} SQL: {sql}"
+            Return Nothing
+        End Try
+    End Function
 End Class
