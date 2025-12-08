@@ -361,3 +361,10 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# 配置文件（不上传真实的配置文件）
+App.config
+Web.config
+
+# 但是上传模板文件
+!App.config.example

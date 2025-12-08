@@ -2,23 +2,39 @@
 Imports System.Data
 
 Public Class clsDatabase
-    ' 替换VB6的CONN_STRING
-    Private Const CONN_STRING As String = "Server=110.42.63.233;Database=pg;Uid=pg;Pwd=123456;Port=3306;"
+    ' 从配置文件中读取连接字符串
+    Private ReadOnly CONN_STRING As String
     Private m_conn As MySqlConnection
     Public Property LastError As String = ""
     Public Property IsConnected As Boolean = False
 
-    ' 初始化（替换Class_Initialize）
+    ' 初始化
     Public Sub New()
+        ' 从配置文件读取连接字符串
+        Try
+            CONN_STRING = ConfigurationManager.ConnectionStrings("MyDatabase").ConnectionString
+        Catch ex As Exception
+            ' 如果读取失败，设置一个默认值（用于错误处理）
+            CONN_STRING = "Server=localhost;Database=mydb;Uid=root;Pwd=123456;Port=3306;"
+            LastError = $"配置读取失败: {ex.Message}"
+        End Try
+
         m_conn = New MySqlConnection(CONN_STRING)
     End Sub
 
-    ' 打开连接（替换OpenConnection）
+    ' 打开连接
     Public Function OpenConnection() As Boolean
         Try
             If m_conn.State = ConnectionState.Open Then
                 Return True
             End If
+
+            ' 检查连接字符串是否有效
+            If String.IsNullOrEmpty(CONN_STRING) Then
+                LastError = "连接字符串未配置"
+                Return False
+            End If
+
             m_conn.Open()
             IsConnected = True
             Return True

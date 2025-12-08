@@ -56,7 +56,11 @@ Partial Class frmMain
         Label3 = New Label()
         lblHighestRanked = New Label()
         lblHighestScore = New Label()
+        imgLevel = New PictureBox()
+        experienceProgressBar = New ExperienceProgressBar()
+        toolTip = New ToolTip(components)
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
+        CType(imgLevel, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' PictureBox1
@@ -82,20 +86,24 @@ Partial Class frmMain
         ' lblLevel
         ' 
         lblLevel.AutoSize = True
-        lblLevel.Location = New Point(12, 9)
+        lblLevel.BackColor = Color.Transparent
+        lblLevel.Font = New Font("Unispace", 15.7499981F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblLevel.ForeColor = Color.White
+        lblLevel.Location = New Point(51, 16)
         lblLevel.Name = "lblLevel"
-        lblLevel.Size = New Size(51, 17)
+        lblLevel.Size = New Size(38, 25)
         lblLevel.TabIndex = 2
-        lblLevel.Text = "lblLevel"
+        lblLevel.Text = "99"
         ' 
         ' lblExp
         ' 
         lblExp.AutoSize = True
-        lblExp.Location = New Point(12, 31)
+        lblExp.Location = New Point(-4, 440)
         lblExp.Name = "lblExp"
         lblExp.Size = New Size(43, 17)
         lblExp.TabIndex = 3
         lblExp.Text = "lblExp"
+        lblExp.Visible = False
         ' 
         ' lblGold
         ' 
@@ -235,7 +243,7 @@ Partial Class frmMain
         ' 
         cmdRank.Cursor = Cursors.No
         cmdRank.FlatStyle = FlatStyle.Flat
-        cmdRank.Location = New Point(203, 12)
+        cmdRank.Location = New Point(314, 221)
         cmdRank.Name = "cmdRank"
         cmdRank.Size = New Size(99, 28)
         cmdRank.TabIndex = 17
@@ -246,7 +254,7 @@ Partial Class frmMain
         ' 
         cmdMarket.Cursor = Cursors.No
         cmdMarket.FlatStyle = FlatStyle.Flat
-        cmdMarket.Location = New Point(203, 59)
+        cmdMarket.Location = New Point(314, 268)
         cmdMarket.Name = "cmdMarket"
         cmdMarket.Size = New Size(99, 28)
         cmdMarket.TabIndex = 18
@@ -257,7 +265,7 @@ Partial Class frmMain
         ' 
         cmdIntoWarehouse.Cursor = Cursors.No
         cmdIntoWarehouse.FlatStyle = FlatStyle.Flat
-        cmdIntoWarehouse.Location = New Point(203, 106)
+        cmdIntoWarehouse.Location = New Point(314, 315)
         cmdIntoWarehouse.Name = "cmdIntoWarehouse"
         cmdIntoWarehouse.Size = New Size(99, 28)
         cmdIntoWarehouse.TabIndex = 19
@@ -369,11 +377,35 @@ Partial Class frmMain
         lblHighestScore.TabIndex = 30
         lblHighestScore.Text = "--"
         ' 
+        ' imgLevel
+        ' 
+        imgLevel.Image = CType(resources.GetObject("imgLevel.Image"), Image)
+        imgLevel.Location = New Point(12, 12)
+        imgLevel.Name = "imgLevel"
+        imgLevel.Size = New Size(83, 36)
+        imgLevel.TabIndex = 31
+        imgLevel.TabStop = False
+        ' 
+        ' experienceProgressBar
+        ' 
+        experienceProgressBar.BackColor = Color.White
+        experienceProgressBar.CurrentValue = 30
+        experienceProgressBar.Font = New Font("Microsoft YaHei UI", 9F)
+        experienceProgressBar.ForeColor = Color.Black
+        experienceProgressBar.Location = New Point(99, 14)
+        experienceProgressBar.Name = "experienceProgressBar"
+        experienceProgressBar.ShowText = False
+        experienceProgressBar.Size = New Size(300, 30)
+        experienceProgressBar.TabIndex = 32
+        ' 
         ' frmMain
         ' 
         AutoScaleDimensions = New SizeF(7F, 17F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
+        Controls.Add(experienceProgressBar)
+        Controls.Add(lblLevel)
+        Controls.Add(imgLevel)
         Controls.Add(lblHighestScore)
         Controls.Add(lblHighestRanked)
         Controls.Add(Label3)
@@ -402,13 +434,13 @@ Partial Class frmMain
         Controls.Add(lblWarehouse)
         Controls.Add(lblGold)
         Controls.Add(lblExp)
-        Controls.Add(lblLevel)
         Controls.Add(lblUsername)
         Controls.Add(PictureBox1)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Name = "frmMain"
         StartPosition = FormStartPosition.CenterScreen
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
+        CType(imgLevel, ComponentModel.ISupportInitialize).EndInit()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -445,4 +477,8 @@ Partial Class frmMain
     Friend WithEvents Label3 As Label
     Friend WithEvents lblHighestRanked As Label
     Friend WithEvents lblHighestScore As Label
+    Friend WithEvents imgLevel As PictureBox
+    Friend WithEvents ExpBar1 As ExperienceProgressBar
+    Friend WithEvents experienceProgressBar As ExperienceProgressBar
+    Friend WithEvents toolTip As ToolTip
 End Class

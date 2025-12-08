@@ -9,14 +9,16 @@
     <GenerateAppConfigFile>false</GenerateAppConfigFile>	  
 	<RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <MyType>WindowsForms</MyType>
-    <ApplicationIcon>icon1.ico</ApplicationIcon>
+    <ApplicationIcon>icon2.ico</ApplicationIcon>
+    <ImportedNamespaces>System.Configuration=False,System.Data=False,System.Drawing=False,System.Windows.Forms=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,miniGames=True</ImportedNamespaces>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="icon1.ico" />
+    <Content Include="icon2.ico" />
   </ItemGroup>
 
   <ItemGroup>
+    <Import Include="System.Configuration" />
     <Import Include="System.Data" />
     <Import Include="System.Drawing" />
     <Import Include="System.Windows.Forms" />

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+	<configSections>
+		<!-- 配置节处理程序声明 -->
+	</configSections>
+
+	<!-- ============================================= -->
+	<!--          数据库连接字符串配置                 -->
+	<!-- ============================================= -->
+	<connectionStrings>
+		<!-- 
+      重要提示：这是配置文件模板
+      请将本文件复制为 App.config，然后修改下面的连接字符串
+      
+      配置说明：
+      Server:   数据库服务器地址（IP或域名）
+      Database: 数据库名称
+      Uid:      用户名
+      Pwd:      密码（请使用安全密码）
+      Port:     端口号（MySQL默认3306）
+      
+      示例：
+      本地开发：Server=localhost;Database=testdb;Uid=root;Pwd=123456;Port=3306;
+      远程服务器：Server=192.168.1.100;Database=production;Uid=admin;Pwd=your_password;Port=3306;
+    -->
+		<add name="MyDatabase"
+			 connectionString="Server=YOUR_SERVER_ADDRESS;Database=YOUR_DATABASE_NAME;Uid=YOUR_USERNAME;Pwd=YOUR_PASSWORD;Port=3306;"
+			 providerName="MySql.Data.MySqlClient" />
+	</connectionStrings>
+
+	<!-- ============================================= -->
+	<!--          应用程序设置                         -->
+	<!-- ============================================= -->
+	<appSettings>
+		<!-- 其他应用程序配置 -->
+		<add key="ApplicationName" value="我的应用程序" />
+		<add key="DebugMode" value="false" />
+		<add key="MaxRetryAttempts" value="3" />
+
+		<!-- 
+      日志配置
+      LogLevel: DEBUG, INFO, WARN, ERROR
+    -->
+		<add key="LogLevel" value="INFO" />
+		<add key="LogFilePath" value="logs\application.log" />
+	</appSettings>
+
+	<!-- ============================================= -->
+	<!--          系统配置                             -->
+	<!-- ============================================= -->
+	<startup>
+		<supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.8" />
+	</startup>
+
+	<!-- ============================================= -->
+	<!--          运行时配置                           -->
+	<!-- ============================================= -->
+	<runtime>
+		<assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+			<!-- 程序集绑定重定向配置 -->
+		</assemblyBinding>
+	</runtime>
+</configuration>
