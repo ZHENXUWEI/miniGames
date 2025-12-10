@@ -1,4 +1,7 @@
 # miniGames
+# 项目迁移至GITEE:https://gitee.com/realsshwer/mini-games.git
+# 但GITHUB保持更新发行版
+
 # 数据库配置说明
 
 ## 首次运行设置
